@@ -21,9 +21,19 @@ app.get('/', (req, res)=>{
     res.json({sucess:true, title:'teste!!!'});
 });
 app.post('/post', async(req, res)=>{
-    const { email, code} = req.body;
+    const { user, email, pass} = req.body;
+    console.log(user);
     console.log(email);
-    console.log(code);
+    console.log(pass);
+    const str = `INSERT INTO usuarios SET ?`,
+    values = {user:user, email:email, pass:pass};
+    try {
+        db.query(str, values, (err, result)=>{
+            console.log(result);
+        })
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 app.listen(port, ()=>{
