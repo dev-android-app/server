@@ -35,6 +35,21 @@ app.post('/post', async(req, res)=>{
         console.log(error);
     }
 })
+app.post('/ncliente', async(req, res)=>{
+    const { nome, cpf } = req.body;
+    console.log(nome);
+    console.log(cpf);
+    const str = `INSERT INTO clientes SET ?`,
+    values = {nome:nome, cpf:cpf};
+    try {
+        db.query(str, values, (err, result)=>{
+            console.log(result);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 
 app.listen(port, ()=>{
     console.log(`api listening on port ${port}`);
