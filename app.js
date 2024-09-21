@@ -49,6 +49,20 @@ app.post('/ncliente', async(req, res)=>{
         console.log(error);
     }
 })
+app.post('/nroupa', async(req, res)=>{
+    const { nome, custo } = req.body;
+    console.log(nome);
+    console.log(custo);
+    const str = `INSERT INTO roupas SET ?`,
+    values = {nome:nome, custo:custo};
+    try {
+        db.query(str, values, (err, result)=>{
+            console.log(result);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 
 app.listen(port, ()=>{
